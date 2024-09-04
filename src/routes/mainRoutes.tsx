@@ -1,5 +1,13 @@
 import MainLayout from '@/layouts/MainLayout'
-import { Home, NotFound, ServerInternalPage } from '@/pages'
+import {
+  HomePage,
+  NotFound,
+  ServerInternalPage,
+  OnSalePage,
+  NewArrivalsPage,
+} from '@/pages'
+import BrandsPage from '@/pages/brands/brands'
+
 import { PATHS } from '@/utils/paths'
 
 const mainRoutes = [
@@ -10,7 +18,19 @@ const mainRoutes = [
       {
         index: true,
         path: PATHS.HOME,
-        element: <Home />,
+        element: <HomePage />,
+      },
+      {
+        path: PATHS.ONSALE,
+        element: <OnSalePage />,
+      },
+      {
+        path: PATHS.NEWARRIVALS,
+        element: <NewArrivalsPage />,
+      },
+      {
+        path: PATHS.BRANDS,
+        element: <BrandsPage />,
       },
     ],
   },

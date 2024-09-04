@@ -1,3 +1,4 @@
+import Footer from '@/components/footer'
 import Header from '@/components/header'
 import { Outlet } from 'react-router-dom'
 
@@ -5,9 +6,10 @@ const MainLayout = () => {
   return (
     <div>
       <Header />
-      <main>
+      <main className="min-h-screen">
         <Outlet></Outlet>
       </main>
+      <Footer />
     </div>
   )
 }

@@ -1,32 +1,35 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import { Button } from './ui/button'
 import { MenuIcon } from 'lucide-react'
 import NavigationMenuComp from './navigation-menu'
-import * as React from 'react'
+import { useRef, useState } from 'react'
+import useClickOutside from '@/hooks/useClickOutside'
 
 const MenuDropDown = () => {
-  // const [isOpen, setIsOpen] = React.useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useClickOutside(menuRef, () => {
+    setIsOpen(false)
+  })
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <>
+      <div className="relative flex flex-col" ref={menuRef}>
         <Button
           variant={'ghost'}
           className="hover:outline-none focus-visible:ring-0"
+          onClick={() => setIsOpen(!isOpen)}
         >
           <MenuIcon size={'24'} />
         </Button>
-      </DropdownMenuTrigger>
 
-      <DropdownMenuContent
-        className={`h-[370px] w-full overflow-hidden bg-white rounded-lg shadow-lg`}
-      >
-        <NavigationMenuComp />
-      </DropdownMenuContent>
-    </DropdownMenu>
+        {isOpen && (
+          <div className="absolute z-50 top-0 left-0 mt-12 bg-white dark:bg-black">
+            <NavigationMenuComp />
+          </div>
+        )}
+      </div>
+    </>
   )
 }
 

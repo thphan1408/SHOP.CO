@@ -7,13 +7,13 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
+import useViewPort from '@/hooks/useViewPort'
 import { cn } from '@/lib/utils'
 import { PATHS } from '@/utils/paths'
 import React from 'react'
 
 import { useLocation } from 'react-router-dom'
 import { ScrollArea } from './ui/scroll-area'
-import useViewPort from '@/hooks/useViewPort'
 
 const PathDataNavigation: {
   title: string
@@ -79,14 +79,15 @@ const NavigationMenuLinkComp = ({
 
 const NavigationMenuComp = () => {
   const width = useViewPort()
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[350px] grid-col-1 gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-              {width < 768 ? (
+            <ul className="grid w-[350px] grid-cols-1 gap-3 p-4 md:w-[350px] lg:grid-cols-2 xl:grid-cols-2 lg:w-[600px] ">
+              {width < 965 ? (
                 <ScrollArea className="h-[270px] w-full">
                   {PathDataNavigation.map((data) => (
                     <ListItem
@@ -151,21 +152,21 @@ const ListItem = React.forwardRef<
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
-      <NavigationMenuLinkComp>
-        <a
-          ref={ref}
-          className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className,
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLinkComp>
+      {/* <NavigationMenuLinkComp> */}
+      <a
+        ref={ref}
+        className={cn(
+          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+          className,
+        )}
+        {...props}
+      >
+        <div className="text-sm font-medium leading-none">{title}</div>
+        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          {children}
+        </p>
+      </a>
+      {/* </NavigationMenuLinkComp> */}
     </li>
   )
 })

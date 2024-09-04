@@ -1,13 +1,7 @@
-import { ModeToggle } from '@/components/mode-toggle'
-import { Button } from '@/components/ui/button'
+import React from 'react'
 
-const Home = () => {
-  return (
-    <div>
-      <Button>Fuck off</Button>
-      <ModeToggle />
-    </div>
-  )
+const HomePage = () => {
+  return <div>HomePage</div>
 }
 
-export default Home
+export default HomePage

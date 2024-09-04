@@ -32,12 +32,13 @@ const TopBar = () => {
                 Sign Up Now
               </Link>
             </span>
-            <button
+            <Button
+              variant="ghost"
               onClick={() => setIsClosed(false)}
-              className="hover:bg-transparent focus:outline-none hover:text-white pr-2"
+              className="hover:bg-transparent  focus:outline-none hover:text-white pr-2"
             >
               <X />
-            </button>
+            </Button>
           </div>
         </motion.div>
       )}
@@ -48,9 +49,9 @@ const TopBar = () => {
 const Header = () => {
   const [isHiddenInput, setIsHiddenInput] = React.useState<boolean>(false)
   return (
-    <header>
+    <header className="sticky top-0 z-40">
       <TopBar />
-      <div className="container-sm md:container md:mx-auto py-[31px]">
+      <div className="sm:container md:mx-auto py-[31px]">
         <div className="flex justify-between items-center flex-wrap">
           <div className="flex">
             <div className="lg:hidden">
